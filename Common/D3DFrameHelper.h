@@ -15,6 +15,7 @@
 #include <string>
 #include <wrl.h>
 #include <vector>
+#include <array>
 #include <algorithm>
 #include <memory>
 #include <unordered_map>
@@ -46,8 +47,8 @@ DxException() = default;
 }                                                                                      
 #endif
 
-#ifndef RELEASE_COM
-#define RELEASE_COM(x) { if(x){ x->Release(); x = 0; } }
+#ifndef ReleaseCom
+#define ReleaseCom(x) { if(x){ x->Release(); x = 0; } }
 #endif
 
 class MathHelper
@@ -96,6 +97,7 @@ public:
 struct SubMeshGeo
 {
 	UINT indexCount = 0;
+	UINT vertexCount = 0;
 	UINT startIndexLocation = 0;
 	INT baseVertexLocation = 0;
 	DirectX::BoundingBox bounds;
@@ -137,4 +139,44 @@ struct MeshGeo
 		vertexBufferUploader = nullptr;
 		indexBufferUploader = nullptr;
 	}
+};
+
+struct Light
+{
+	DirectX::XMFLOAT3 strength = { 0.5f, 0.5f, 0.5f };
+	float falloffStart = 1.0f;
+	DirectX::XMFLOAT3 direction = { 0.0f, -1.0f, 0.0f };
+	float falloffEnd = 10.0f;
+	DirectX::XMFLOAT3 position = { 0.0f, 0.0f, 0.0f };
+	float spotPower = 64.0f;
+};
+
+#define MaxLights 16
+
+struct MaterialConstants
+{
+	DirectX::XMFLOAT4 diffuseAlbedo = { 1.0f, 1.0f, 1.0f, 1.0f };
+	DirectX::XMFLOAT3 fresnelR0 = { 0.01f, 0.01f, 0.01f };
+	float roughness = 0.25f;
+	DirectX::XMFLOAT4X4 matTransform = MathHelper::Identity4x4();
+};
+
+extern const int gNumFrameResources;
+
+struct Material
+{
+	std::string name;
+	int matCBIndex = -1;
+	int diffuseSrvHeapIndex = -1;
+	int normalSrvHeapIndex = -1;
+	int numFramesDirty = gNumFrameResources;
+	MaterialConstants constants;
+};
+
+struct Texture
+{
+	std::string name;
+	std::wstring fileName;
+	Microsoft::WRL::ComPtr<ID3D12Resource> resource = nullptr;
+	Microsoft::WRL::ComPtr<ID3D12Resource> uploadHeap = nullptr;
 };

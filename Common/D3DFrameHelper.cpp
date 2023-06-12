@@ -74,6 +74,8 @@ Microsoft::WRL::ComPtr<ID3DBlob> D3DUtil::compileShader(
 	ComPtr<ID3DBlob> errors;
 	hr = D3DCompileFromFile(filename.c_str(), defines, D3D_COMPILE_STANDARD_FILE_INCLUDE, 
 		entrypoint.c_str(), target.c_str(), complieFlags, 0, &byteCode, &errors);
+	if(errors != nullptr)
+		OutputDebugStringA((char*)errors->GetBufferPointer());
 	ThrowIfFailed(hr);
 	return byteCode;
 }

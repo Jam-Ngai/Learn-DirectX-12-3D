@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{b2e4573d-5343-4c51-b500-20d9ade0bdac}</ProjectGuid>
-    <RootNamespace>PA1</RootNamespace>
+    <ProjectGuid>{67223705-f13b-4b73-b71e-7c467930a60d}</ProjectGuid>
+    <RootNamespace>fabric</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -75,7 +75,7 @@
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>false</ConformanceMode>
+      <ConformanceMode>Default</ConformanceMode>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -89,7 +89,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>false</ConformanceMode>
+      <ConformanceMode>Default</ConformanceMode>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -103,7 +103,7 @@
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>false</ConformanceMode>
+      <ConformanceMode>Default</ConformanceMode>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -117,7 +117,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>false</ConformanceMode>
+      <ConformanceMode>Default</ConformanceMode>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -127,17 +127,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Common\D3DFrame.h" />
-    <ClInclude Include="..\..\Common\D3DFrameHelper.h" />
-    <ClInclude Include="..\..\Common\GameTimer.h" />
-    <ClInclude Include="..\..\Common\UploadBuffer.h" />
-    <ClInclude Include="Hello.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="..\..\Common\D3DFrame.cpp" />
     <ClCompile Include="..\..\Common\D3DFrameHelper.cpp" />
+    <ClCompile Include="..\..\Common\DDSTextureLoader.cpp" />
     <ClCompile Include="..\..\Common\GameTimer.cpp" />
-    <ClCompile Include="Hello.cpp" />
+    <ClCompile Include="fabric.cpp" />
+    <ClCompile Include="FrameResouce.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Common\D3DFrame.h" />
+    <ClInclude Include="..\..\Common\D3DFrameHelper.h" />
+    <ClInclude Include="..\..\Common\d3dx12.h" />
+    <ClInclude Include="..\..\Common\DDSTextureLoader.h" />
+    <ClInclude Include="..\..\Common\GameTimer.h" />
+    <ClInclude Include="..\..\Common\UploadBuffer.h" />
+    <ClInclude Include="fabric.h" />
+    <ClInclude Include="FrameResouce.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

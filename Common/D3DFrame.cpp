@@ -305,7 +305,7 @@ void D3DFrame::logAdapters()
 	for (size_t i = 0; i < adapterList.size(); ++i)
 	{
 		logAdapterOutputs(adapterList[i]);
-		RELEASE_COM(adapterList[i]);
+		ReleaseCom(adapterList[i]);
 	}
 }
 
@@ -326,7 +326,7 @@ void D3DFrame::logAdapterOutputs(IDXGIAdapter* adapter)
 		text += L"\n";
 		OutputDebugString(text.c_str());
 		logOutputDisplayModes(output, m_BackBufferFormat);
-		RELEASE_COM(output);
+		ReleaseCom(output);
 		++i;
 	}
 }
